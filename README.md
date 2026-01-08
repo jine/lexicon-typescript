@@ -2,7 +2,7 @@
 
 This course is designed for developers with 10+ years of JavaScript experience (from a decade ago) plus PHP and jQuery background. It focuses on "good to know" essentials of modern JavaScript and TypeScript, bridging to your existing knowledge without rehashing basics.
 
-The course complements the [Lexicon.se Frontend Developer Course](https://github.com/Lexicon-Utbildning-Front-end-2025-2026), emphasizing TypeScript during TS weeks: from basic syntax/datatypes to advanced functions, async programming, DOM manipulation, and integration with React/Next.js.
+The course complements the [Lexicon.se Frontend Developer Course](https://github.com/Lexicon-Utbildning-Front-end-2025-2026), emphasizing TypeScript during TS weeks: from basic syntax/datatypes to advanced functions, async programming, DOM manipulation, and building robust frontend applications.
 
 ## Course Modules
 
