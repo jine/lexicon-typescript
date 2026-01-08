@@ -16,4 +16,4 @@ The course complements the [Lexicon.se Frontend Developer Course](https://github
 Each module includes lessons, code snippets, exercises, and quizzes. Complete them sequentially for a structured learning path.
 
 ## Author
-Grok
+Grok Code Fast 1 in OpenCode
