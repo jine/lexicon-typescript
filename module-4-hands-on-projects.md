@@ -1,9 +1,6 @@
 # Module 4: Hands-on Projects
 
-<div align="center">
-  <strong>Previous Module:</strong> [← Setup and Tools](./module-3-setup-tools.md) |
-  <strong>Next Module:</strong> [Best Practices and Migration →](./module-5-best-practices.md)
-</div>
+**Previous:** [← Module 3: Setup and Tools](./module-3-setup-tools.md) | **Next:** [Module 5: Best Practices →](./module-5-best-practices.md)
 
 ## Project 1: Typed Functions - Calculator
 
@@ -784,8 +781,5 @@ emitter.use(async (event, payload, next) => {
 
 ---
 
-<div align="center">
-  <strong>Previous Module:</strong> [← Setup and Tools](./module-3-setup-tools.md) |
-  <strong>Next Module:</strong> [Best Practices and Migration →](./module-5-best-practices.md)
-</div>
+**Previous:** [← Module 3: Setup and Tools](./module-3-setup-tools.md) | **Next:** [Module 5: Best Practices →](./module-5-best-practices.md)
 

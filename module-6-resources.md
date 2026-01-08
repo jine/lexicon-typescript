@@ -1,8 +1,6 @@
 # Module 6: Resources for Further Learning
 
-<div align="center">
-  <strong>Previous Module:</strong> [← Best Practices and Migration](./module-5-best-practices.md)
-</div>
+**Previous:** [← Module 5: Best Practices](./module-5-best-practices.md)
 
 ## Learning Paths
 
@@ -165,6 +163,4 @@ Remember: TypeScript is a tool for writing better JavaScript. Focus on understan
 
 ---
 
-<div align="center">
-  <strong>Previous Module:</strong> [← Best Practices and Migration](./module-5-best-practices.md)
-</div>
+**Previous:** [← Module 5: Best Practices](./module-5-best-practices.md)

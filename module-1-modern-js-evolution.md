@@ -1,8 +1,6 @@
 # Module 1: Modern JS Evolution and TS Introduction
 
-<div align="center">
-  <strong>Next Module:</strong> [Core TypeScript Concepts →](./module-2-core-ts-concepts.md)
-</div>
+**Next:** [Module 2: Core TypeScript Concepts →](./module-2-core-ts-concepts.md)
 
 ## Lesson 1: ES6+ Features Bridging to Your JS Knowledge
 
@@ -366,6 +364,4 @@ type Callback = (error: Error | null, result?: any) => void;
 
 ---
 
-<div align="center">
-  <strong>Next Module:</strong> [Core TypeScript Concepts →](./module-2-core-ts-concepts.md)
-</div>
+**Next:** [Module 2: Core TypeScript Concepts →](./module-2-core-ts-concepts.md)

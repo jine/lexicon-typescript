@@ -1,9 +1,6 @@
 # Module 5: Best Practices and Migration
 
-<div align="center">
-  <strong>Previous Module:</strong> [← Hands-on Projects](./module-4-hands-on-projects.md) |
-  <strong>Next Module:</strong> [Resources for Further Learning →](./module-6-resources.md)
-</div>
+**Previous:** [← Module 4: Hands-on Projects](./module-4-hands-on-projects.md) | **Next:** [Module 6: Resources →](./module-6-resources.md)
 
 ## Lesson 1: Migration Strategies
 
@@ -576,7 +573,4 @@ declare global {
 
 ---
 
-<div align="center">
-  <strong>Previous Module:</strong> [← Hands-on Projects](./module-4-hands-on-projects.md) |
-  <strong>Next Module:</strong> [Resources for Further Learning →](./module-6-resources.md)
-</div>
+**Previous:** [← Module 4: Hands-on Projects](./module-4-hands-on-projects.md) | **Next:** [Module 6: Resources →](./module-6-resources.md)

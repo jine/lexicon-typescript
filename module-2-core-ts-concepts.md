@@ -1,9 +1,6 @@
 # Module 2: Core TypeScript Concepts
 
-<div align="center">
-  <strong>Previous Module:</strong> [← Modern JS Evolution and TS Introduction](./module-1-modern-js-evolution.md) |
-  <strong>Next Module:</strong> [Setup and Tools →](./module-3-setup-tools.md)
-</div>
+**Previous:** [← Module 1: Modern JS Evolution](./module-1-modern-js-evolution.md) | **Next:** [Module 3: Setup and Tools →](./module-3-setup-tools.md)
 
 ## Lesson 1: Types and Interfaces
 
@@ -330,7 +327,4 @@ console.log(arr.last()); // 3
 
 ---
 
-<div align="center">
-  <strong>Previous Module:</strong> [← Modern JS Evolution and TS Introduction](./module-1-modern-js-evolution.md) |
-  <strong>Next Module:</strong> [Setup and Tools →](./module-3-setup-tools.md)
-</div>
+**Previous:** [← Module 1: Modern JS Evolution](./module-1-modern-js-evolution.md) | **Next:** [Module 3: Setup and Tools →](./module-3-setup-tools.md)

@@ -1,9 +1,6 @@
 # Module 3: Setup and Tools
 
-<div align="center">
-  <strong>Previous Module:</strong> [← Core TypeScript Concepts](./module-2-core-ts-concepts.md) |
-  <strong>Next Module:</strong> [Hands-on Projects →](./module-4-hands-on-projects.md)
-</div>
+**Previous:** [← Module 2: Core TypeScript Concepts](./module-2-core-ts-concepts.md) | **Next:** [Module 4: Hands-on Projects →](./module-4-hands-on-projects.md)
 
 ## Lesson 1: Installing Node.js and Package Managers
 
@@ -379,7 +376,4 @@ describe('add function', () => {
 
 ---
 
-<div align="center">
-  <strong>Previous Module:</strong> [← Core TypeScript Concepts](./module-2-core-ts-concepts.md) |
-  <strong>Next Module:</strong> [Hands-on Projects →](./module-4-hands-on-projects.md)
-</div>
+**Previous:** [← Module 2: Core TypeScript Concepts](./module-2-core-ts-concepts.md) | **Next:** [Module 4: Hands-on Projects →](./module-4-hands-on-projects.md)
