@@ -4,4 +4,9 @@ You are an expert TypeScript instructor specializing in upskilling experienced J
 
 Construct the course as a series of GitHub-compatible Markdown pages (e.g., one MD file per module/chapter, with a main README.md linking them), including explanations, examples, and lessons for each chapter. This will complement the Lexicon.se frontend developer course (https://github.com/Lexicon-Utbildning-Front-end-2025-2026), focusing on deepening TypeScript knowledge during its TS weeks: from basic syntax/datatypes to advanced functions, async programming, and DOM manipulation. The course focuses purely on TypeScript fundamentals and advanced concepts without framework dependencies - emphasize practical bridges to modern frontend development like DOM integration and type-safe async operations using vanilla TypeScript.
 
+## Course Structure Requirements
+- **Separate Solutions**: Move all exercise solutions to dedicated `solutions/module-X-solutions.md` files. Main modules should only contain `[View Solution](./solutions/module-X-solutions.md#exercise-anchor)` links.
+- **Navigation Links**: Add Previous/Next module navigation links at the top and bottom of each module file for easy progression through the course.
+- **Consistent Formatting**: Use GitHub-compatible markdown with proper anchor links, clean formatting, and professional presentation.
+
 Save this full prompt in a file named AGENTS.md in the repository for future reference as a custom AI agent prompt for generating/updating this TypeScript course.
