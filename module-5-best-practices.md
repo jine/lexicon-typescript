@@ -1,5 +1,10 @@
 # Module 5: Best Practices and Migration
 
+<div align="center">
+  <strong>Previous Module:</strong> [← Hands-on Projects](./module-4-hands-on-projects.md) |
+  <strong>Next Module:</strong> [Resources for Further Learning →](./module-6-resources.md)
+</div>
+
 ## Lesson 1: Migration Strategies
 
 Migrate from JS to TS incrementally to avoid overwhelming changes.
@@ -568,3 +573,10 @@ declare global {
 2. Why avoid type assertions? (Can hide type errors, less safe)
 3. How to handle optional properties safely? (Use nullish coalescing ??)
 4. What does `never` type help with? (Exhaustive type checking)
+
+---
+
+<div align="center">
+  <strong>Previous Module:</strong> [← Hands-on Projects](./module-4-hands-on-projects.md) |
+  <strong>Next Module:</strong> [Resources for Further Learning →](./module-6-resources.md)
+</div>

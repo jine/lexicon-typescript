@@ -1,5 +1,9 @@
 # Module 1: Modern JS Evolution and TS Introduction
 
+<div align="center">
+  <strong>Next Module:</strong> [Core TypeScript Concepts →](./module-2-core-ts-concepts.md)
+</div>
+
 ## Lesson 1: ES6+ Features Bridging to Your JS Knowledge
 
 Modern JavaScript (ES6+) introduced features that make code more readable, maintainable, and powerful. Drawing from your jQuery and PHP background, these changes reduce boilerplate and improve error handling.
@@ -359,3 +363,9 @@ type Callback = (error: Error | null, result?: any) => void;
 6. What ES6+ features replace callback hell? (Promises and async/await)
 7. How do Maps differ from objects? (Any type keys, better performance for frequent additions/removals)
 8. What are generators useful for? (Creating iterators, handling large datasets lazily)
+
+---
+
+<div align="center">
+  <strong>Next Module:</strong> [Core TypeScript Concepts →](./module-2-core-ts-concepts.md)
+</div>

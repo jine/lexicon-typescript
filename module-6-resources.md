@@ -1,5 +1,9 @@
 # Module 6: Resources for Further Learning
 
+<div align="center">
+  <strong>Previous Module:</strong> [← Best Practices and Migration](./module-5-best-practices.md)
+</div>
+
 ## Learning Paths
 
 ### Beginner to Intermediate
@@ -158,3 +162,9 @@
 - Regular code reviews focusing on type safety
 
 Remember: TypeScript is a tool for writing better JavaScript. Focus on understanding the JavaScript runtime while leveraging TypeScript's type system to catch errors early and improve developer experience.
+
+---
+
+<div align="center">
+  <strong>Previous Module:</strong> [← Best Practices and Migration](./module-5-best-practices.md)
+</div>

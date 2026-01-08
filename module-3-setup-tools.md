@@ -1,5 +1,10 @@
 # Module 3: Setup and Tools
 
+<div align="center">
+  <strong>Previous Module:</strong> [← Core TypeScript Concepts](./module-2-core-ts-concepts.md) |
+  <strong>Next Module:</strong> [Hands-on Projects →](./module-4-hands-on-projects.md)
+</div>
+
 ## Lesson 1: Installing Node.js and Package Managers
 
 Node.js enables server-side JS/TS execution. npm (or yarn) handles dependencies and scripts.
@@ -371,3 +376,10 @@ describe('add function', () => {
 1. Why use a bundler like Webpack? (Bundles modules, optimizes for production)
 2. What does Jest preset 'ts-jest' do? (Configures Jest to work with TypeScript)
 3. Why configure ESLint for TypeScript? (Type-aware linting rules)
+
+---
+
+<div align="center">
+  <strong>Previous Module:</strong> [← Core TypeScript Concepts](./module-2-core-ts-concepts.md) |
+  <strong>Next Module:</strong> [Hands-on Projects →](./module-4-hands-on-projects.md)
+</div>

@@ -1,5 +1,10 @@
 # Module 2: Core TypeScript Concepts
 
+<div align="center">
+  <strong>Previous Module:</strong> [← Modern JS Evolution and TS Introduction](./module-1-modern-js-evolution.md) |
+  <strong>Next Module:</strong> [Setup and Tools →](./module-3-setup-tools.md)
+</div>
+
 ## Lesson 1: Types and Interfaces
 
 Types define data structures, from primitives to complex objects. Interfaces describe contracts for objects, similar to PHP interfaces, ensuring consistency.
@@ -322,3 +327,10 @@ console.log(arr.last()); // 3
 2. How do decorators work? (Modify classes/methods at design time)
 3. What is declaration merging? (Extending existing type declarations)
 4. Why use type guards instead of type assertions? (Runtime safety vs compile-time assumptions)
+
+---
+
+<div align="center">
+  <strong>Previous Module:</strong> [← Modern JS Evolution and TS Introduction](./module-1-modern-js-evolution.md) |
+  <strong>Next Module:</strong> [Setup and Tools →](./module-3-setup-tools.md)
+</div>
