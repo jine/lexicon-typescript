@@ -17,3 +17,6 @@ Each module includes lessons, code snippets, exercises, and quizzes. Complete th
 
 ## Author
 Grok Code Fast 1 in OpenCode
+
+## Tools Used
+This course was created using [OpenCode](https://opencode.ai), an interactive CLI tool for software engineering, and Grok Code Fast 1, an AI assistant for rapid code generation and content creation.
