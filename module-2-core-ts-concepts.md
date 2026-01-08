@@ -35,23 +35,13 @@ const premium: PremiumProduct = { id: 1, name: 'Laptop', price: 1000, discount: 
 ### Exercises
 
 1. **Create an interface for a user object and implement a function**  
-   Original:  
-   ```typescript
-   function greet(user) {
-     console.log('Hi ' + user.name);
-   }
-   ```  
-   Solution:  
-   ```typescript
-   interface User {
-     name: string;
-     age?: number;
-   }
-
-   function greet(user: User): void {
-     console.log(`Hi ${user.name}`);
-   }
-   ```
+    Original:  
+    ```typescript
+    function greet(user) {
+      console.log('Hi ' + user.name);
+    }
+    ```  
+    [View Solution](./solutions/module-2-solutions.md#exercise-1-create-an-interface-for-a-user-object-and-implement-a-function)
 
 ### Quiz
 1. What's the difference between type and interface? (Interface for objects, type for unions/primitives)
@@ -120,82 +110,36 @@ function checkAccess(role: Role): boolean {
 ### Exercises
 
 1. **Implement a generic function for filtering arrays**  
-   Original:  
-   ```typescript
-   function filterNumbers(arr, predicate) {
-     return arr.filter(predicate);
-   }
-   ```  
-   Solution:  
-   ```typescript
-   function filterArray<T>(arr: T[], predicate: (item: T) => boolean): T[] {
-     return arr.filter(predicate);
-   }
-
-    const nums = filterArray([1, 2, 3, 4], n => n > 2); // [3, 4]
-    ```
+    Original:  
+    ```typescript
+    function filterNumbers(arr, predicate) {
+      return arr.filter(predicate);
+    }
+    ```  
+    [View Solution](./solutions/module-2-solutions.md#exercise-1-implement-a-generic-function-for-filtering-arrays)
 
 2. **Create a generic class for a data store**  
-    Original:  
-    ```typescript
-    class DataStore {
-      constructor() {
-        this.items = [];
-      }
-      add(item) {
-        this.items.push(item);
-      }
-    }
-    ```  
-    Solution:  
-    ```typescript
-    class DataStore<T> {
-      private items: T[] = [];
-
-      add(item: T): void {
-        this.items.push(item);
-      }
-
-      getAll(): T[] {
-        return [...this.items];
-      }
-
-      find(predicate: (item: T) => boolean): T | undefined {
-        return this.items.find(predicate);
-      }
-    }
-
-    const userStore = new DataStore<{ id: number; name: string }>();
-    userStore.add({ id: 1, name: 'John' });
-    ```
+     Original:  
+     ```typescript
+     class DataStore {
+       constructor() {
+         this.items = [];
+       }
+       add(item) {
+         this.items.push(item);
+       }
+     }
+     ```  
+    [View Solution](./solutions/module-2-solutions.md#exercise-2-create-a-generic-class-for-a-data-store)
 
 3. **Implement generic constraints for API responses**  
-    Original:  
-    ```typescript
-    function handleResponse(response) {
-      return response.data;
-    }
-    ```  
-    Solution:  
-    ```typescript
-    interface ApiResponse<T> {
-      data: T;
-      status: number;
-      message?: string;
-    }
-
-    function handleResponse<T>(response: ApiResponse<T>): T {
-      if (response.status !== 200) {
-        throw new Error(response.message || 'API Error');
-      }
-      return response.data;
-    }
-
-    const userResponse: ApiResponse<{ id: number; name: string }> = {
-      data: { id: 1, name: 'John' },
-      status: 200
-    };
-    ```
+     Original:  
+     ```typescript
+     function handleResponse(response) {
+       return response.data;
+     }
+     ```  
+    [View Solution](./solutions/module-2-solutions.md#exercise-3-implement-generic-constraints-for-api-responses)
 
 ### Quiz
 1. When to use generics? (For type-safe reusable functions)
@@ -249,73 +193,37 @@ type EventHandler = `on${Capitalize<EventName>}`; // 'onClick' | 'onHover' | 'on
 ### Exercises
 
 1. **Use union types for a function parameter**  
-   Original:  
-   ```typescript
-   function logValue(value) {
-     console.log(value);
-   }
-   ```  
-   Solution:  
-   ```typescript
-    function logValue(value: string | number): void {
+    Original:  
+    ```typescript
+    function logValue(value) {
       console.log(value);
     }
-    ```
+    ```  
+    [View Solution](./solutions/module-2-solutions.md#exercise-1-use-union-types-for-a-function-parameter)
 
 2. **Create a mapped type for configuration objects**  
-    Original:  
-    ```typescript
-    interface Config {
-      apiUrl: string;
-      timeout: number;
-      retries: number;
-    }
-    ```  
-    Solution:  
-    ```typescript
-    interface Config {
-      apiUrl: string;
-      timeout: number;
-      retries: number;
-    }
-
-    type ConfigKeys = keyof Config; // 'apiUrl' | 'timeout' | 'retries'
-    type OptionalConfig = Partial<Config>;
-    type RequiredConfig = Required<OptionalConfig>;
-
-    // Custom mapped type for environment variables
-    type EnvConfig = {
-      [K in keyof Config as `APP_${Uppercase<string & K>}`]: string;
-    };
-    // Results in: { APP_APIURL: string; APP_TIMEOUT: string; APP_RETRIES: string }
-    ```
+     Original:  
+     ```typescript
+     interface Config {
+       apiUrl: string;
+       timeout: number;
+       retries: number;
+     }
+     ```  
+    [View Solution](./solutions/module-2-solutions.md#exercise-2-create-a-mapped-type-for-configuration-objects)
 
 3. **Use conditional types for type guards**  
-    Original:  
-    ```typescript
-    function processValue(value) {
-      if (typeof value === 'string') {
-        return value.toUpperCase();
-      } else {
-        return value * 2;
-      }
-    }
-    ```  
-    Solution:  
-    ```typescript
-    type ProcessResult<T> = T extends string ? string : number;
-
-    function processValue<T extends string | number>(value: T): ProcessResult<T> {
-      if (typeof value === 'string') {
-        return value.toUpperCase() as ProcessResult<T>;
-      } else {
-        return (value * 2) as ProcessResult<T>;
-      }
-    }
-
-    const result1 = processValue('hello'); // string
-    const result2 = processValue(5); // number
-    ```
+     Original:  
+     ```typescript
+     function processValue(value) {
+       if (typeof value === 'string') {
+         return value.toUpperCase();
+       } else {
+         return value * 2;
+       }
+     }
+     ```  
+    [View Solution](./solutions/module-2-solutions.md#exercise-3-use-conditional-types-for-type-guards)
 
 ### Quiz
 1. What does `Partial<T>` do? (Makes all properties optional)
@@ -389,71 +297,25 @@ console.log(arr.last()); // 3
 ### Exercises
 
 1. **Create a type guard for union types**  
-    Original:  
-    ```typescript
-    type Shape = Circle | Rectangle;
-    function getArea(shape) {
-      // Need to check type
-    }
-    ```  
-    Solution:  
-    ```typescript
-    interface Circle {
-      type: 'circle';
-      radius: number;
-    }
-
-    interface Rectangle {
-      type: 'rectangle';
-      width: number;
-      height: number;
-    }
-
-    type Shape = Circle | Rectangle;
-
-    function isCircle(shape: Shape): shape is Circle {
-      return shape.type === 'circle';
-    }
-
-    function getArea(shape: Shape): number {
-      if (isCircle(shape)) {
-        return Math.PI * shape.radius ** 2;
-      } else {
-        return shape.width * shape.height;
-      }
-    }
-    ```
+     Original:  
+     ```typescript
+     type Shape = Circle | Rectangle;
+     function getArea(shape) {
+       // Need to check type
+     }
+     ```  
+     [View Solution](./solutions/module-2-solutions.md#exercise-1-create-a-type-guard-for-union-types)
 
 2. **Implement a simple decorator for timing**  
-    Original:  
-    ```typescript
-    class Service {
-      slowMethod() {
-        // some slow operation
-      }
-    }
-    ```  
-    Solution:  
-    ```typescript
-    function timing(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-      const original = descriptor.value;
-      descriptor.value = function(...args: any[]) {
-        const start = Date.now();
-        const result = original.apply(this, args);
-        const end = Date.now();
-        console.log(`${propertyKey} took ${end - start}ms`);
-        return result;
-      };
-    }
-
-    class Service {
-      @timing
-      slowMethod(): void {
-        // simulate slow operation
-        for (let i = 0; i < 1000000; i++) {}
-      }
-    }
-    ```
+     Original:  
+     ```typescript
+     class Service {
+       slowMethod() {
+         // some slow operation
+       }
+     }
+     ```  
+    [View Solution](./solutions/module-2-solutions.md#exercise-2-implement-a-simple-decorator-for-timing)
 
 ### Quiz
 1. What are type guards used for? (Narrow union types at runtime)

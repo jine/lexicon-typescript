@@ -168,141 +168,80 @@ console.log(fib.next().value); // 3
 ### Exercises
 
 1. **Refactor jQuery AJAX to fetch with async/await**  
-   Original:  
-   ```javascript
-   $.ajax({
-     url: '/api/data',
-     method: 'GET',
-     success: function(data) {
-       console.log(data);
-     },
-     error: function(err) {
-       console.error(err);
-     }
-   });
-   ```  
-   Solution:  
-   ```javascript
-   async function loadData() {
-     try {
-       const response = await fetch('/api/data');
-       const data = await response.json();
-       console.log(data);
-     } catch (error) {
-       console.error(error);
-     }
-   }
-   ```
-
-2. **Use destructuring and template literals**  
-   Original:  
-   ```javascript
-   function displayUser(user) {
-     console.log('Name: ' + user.name + ', Age: ' + user.age);
-   }
-   ```  
-   Solution:  
-   ```javascript
-    function displayUser({ name, age }) {
-      console.log(`Name: ${name}, Age: ${age}`);
-    }
-```
-
-3. **Convert prototype-based code to class syntax**  
     Original:  
     ```javascript
-    function Product(name, price) {
-      this.name = name;
-      this.price = price;
-    }
-    Product.prototype.getDisplayPrice = function() {
-      return '$' + this.price;
-    };
-    ```  
-    Solution:  
-    ```javascript
-    class Product {
-      constructor(name, price) {
-        this.name = name;
-        this.price = price;
+    $.ajax({
+      url: '/api/data',
+      method: 'GET',
+      success: function(data) {
+        console.log(data);
+      },
+      error: function(err) {
+        console.error(err);
       }
-
-      getDisplayPrice() {
-        return `$${this.price}`;
-      }
-    }
-    ```
-
-4. **Use Map for caching user data**  
-    Original:  
-    ```javascript
-    var userCache = {};
-    function getUser(id) {
-      if (userCache[id]) return userCache[id];
-      // fetch user...
-      userCache[id] = { id, name: 'User' + id };
-      return userCache[id];
-    }
-    ```  
-    Solution:  
-    ```javascript
-    const userCache = new Map();
-    function getUser(id) {
-      if (userCache.has(id)) return userCache.get(id);
-      // fetch user...
-      const user = { id, name: `User${id}` };
-      userCache.set(id, user);
-      return user;
-    }
-    ```
-
-5. **Create a generator for ID sequence**  
-    Original:  
-    ```javascript
-    var id = 0;
-    function getNextId() {
-      return ++id;
-    }
-    ```  
-    Solution:  
-    ```javascript
-    function* idGenerator() {
-      let id = 0;
-      while (true) {
-        yield ++id;
-      }
-    }
-    const getNextId = idGenerator();
-    console.log(getNextId.next().value); // 1
-    console.log(getNextId.next().value); // 2
-    ```
-
-6. **Refactor callback-based code to use Promises**  
-    Original:  
-    ```javascript
-    function loadData(callback) {
-      setTimeout(() => {
-        callback(null, { data: 'loaded' });
-      }, 1000);
-    }
-    loadData((error, result) => {
-      if (error) console.error(error);
-      else console.log(result);
     });
     ```  
-    Solution:  
+    [View Solution](./solutions/module-1-solutions.md#exercise-1-refactor-jquery-ajax-to-fetch-with-asyncawait)
+
+2. **Use destructuring and template literals**  
+    Original:  
     ```javascript
-    function loadData() {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve({ data: 'loaded' });
-        }, 1000);
-      });
+    function displayUser(user) {
+      console.log('Name: ' + user.name + ', Age: ' + user.age);
     }
-    loadData()
-      .then(result => console.log(result))
-      .catch(error => console.error(error));
-    ```
+    ```  
+    [View Solution](./solutions/module-1-solutions.md#exercise-2-use-destructuring-and-template-literals)
+
+3. **Convert prototype-based code to class syntax**  
+     Original:  
+     ```javascript
+     function Product(name, price) {
+       this.name = name;
+       this.price = price;
+     }
+     Product.prototype.getDisplayPrice = function() {
+       return '$' + this.price;
+     };
+     ```  
+     [View Solution](./solutions/module-1-solutions.md#exercise-3-convert-prototype-based-code-to-class-syntax)
+
+4. **Use Map for caching user data**  
+     Original:  
+     ```javascript
+     var userCache = {};
+     function getUser(id) {
+       if (userCache[id]) return userCache[id];
+       // fetch user...
+       userCache[id] = { id, name: 'User' + id };
+       return userCache[id];
+     }
+     ```  
+     [View Solution](./solutions/module-1-solutions.md#exercise-4-use-map-for-caching-user-data)
+
+5. **Create a generator for ID sequence**  
+     Original:  
+     ```javascript
+     var id = 0;
+     function getNextId() {
+       return ++id;
+     }
+     ```  
+     [View Solution](./solutions/module-1-solutions.md#exercise-5-create-a-generator-for-id-sequence)
+
+6. **Refactor callback-based code to use Promises**  
+     Original:  
+     ```javascript
+     function loadData(callback) {
+       setTimeout(() => {
+         callback(null, { data: 'loaded' });
+       }, 1000);
+     }
+     loadData((error, result) => {
+       if (error) console.error(error);
+       else console.log(result);
+     });
+     ```  
+     [View Solution](./solutions/module-1-solutions.md#exercise-6-refactor-callback-based-code-to-use-promises)
 
 ### Quiz
 1. How do arrow functions differ from regular functions? (Lexical this, concise syntax)
@@ -361,106 +300,55 @@ type Callback = (error: Error | null, result?: any) => void;
 ### Exercises
 
 1. **Add types to a plain JS function**  
-   Original:  
-   ```javascript
-   function add(a, b) {
-     return a + b;
-   }
-   ```  
-   Solution:  
-   ```typescript
-   function add(a: number, b: number): number {
-     return a + b;
-   }
-   ```
+    Original:  
+    ```javascript
+    function add(a, b) {
+      return a + b;
+    }
+    ```  
+    [View Solution](./solutions/module-1-solutions.md#exercise-1-add-types-to-a-plain-js-function)
 
 2. **Define an interface and use it**  
-   Original:  
-   ```javascript
-   function displayProduct(product) {
-     console.log(product.name + ': $' + product.price);
-   }
-   ```  
-   Solution:  
-   ```typescript
-   interface Product {
-     name: string;
-     price: number;
-   }
-
-    function displayProduct(product: Product): void {
-      console.log(`${product.name}: $${product.price}`);
-    }
-```
+     Original:  
+     ```javascript
+     function displayProduct(product) {
+       console.log(product.name + ': $' + product.price);
+     }
+     ```  
+     [View Solution](./solutions/module-1-solutions.md#exercise-2-define-an-interface-and-use-it)
 
 3. **Add union types for flexible function parameters**  
-    Original:  
-    ```javascript
-    function processInput(input) {
-      if (typeof input === 'string') {
-        return input.toUpperCase();
-      } else if (typeof input === 'number') {
-        return input * 2;
-      }
-      return input;
-    }
-    ```  
-    Solution:  
-    ```typescript
-    function processInput(input: string | number): string | number {
-      if (typeof input === 'string') {
-        return input.toUpperCase();
-      } else if (typeof input === 'number') {
-        return input * 2;
-      }
-      return input;
-    }
-    ```
+     Original:  
+     ```javascript
+     function processInput(input) {
+       if (typeof input === 'string') {
+         return input.toUpperCase();
+       } else if (typeof input === 'number') {
+         return input * 2;
+       }
+       return input;
+     }
+     ```  
+     [View Solution](./solutions/module-1-solutions.md#exercise-3-add-union-types-for-flexible-function-parameters)
 
 4. **Use literal types for status management**  
-    Original:  
-    ```javascript
-    function updateOrder(order, status) {
-      // status could be any string
-      order.status = status;
-    }
-    ```  
-    Solution:  
-    ```typescript
-    type OrderStatus = 'pending' | 'processing' | 'shipped' | 'delivered';
-
-    interface Order {
-      id: number;
-      status: OrderStatus;
-    }
-
-    function updateOrder(order: Order, status: OrderStatus): void {
-      order.status = status;
-    }
-    ```
+     Original:  
+     ```javascript
+     function updateOrder(order, status) {
+       // status could be any string
+       order.status = status;
+     }
+     ```  
+     [View Solution](./solutions/module-1-solutions.md#exercise-4-use-literal-types-for-status-management)
 
 5. **Create a type alias for complex object**  
-    Original:  
-    ```javascript
-    function createPoint(x, y) {
-      return { x: x, y: y };
-    }
-    ```  
-    Solution:  
-    ```typescript
-    type Point = {
-      x: number;
-      y: number;
-    };
-
-    function createPoint(x: number, y: number): Point {
-      return { x, y };
-    }
-
-    function calculateDistance(p1: Point, p2: Point): number {
-      return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
-    }
-    ```
+     Original:  
+     ```javascript
+     function createPoint(x, y) {
+       return { x: x, y: y };
+     }
+     ```  
+     [View Solution](./solutions/module-1-solutions.md#exercise-5-create-a-type-alias-for-complex-object)
 
 ### Quiz
 1. What are the benefits of TypeScript? (Type safety, better IDE support, error catching at compile time)

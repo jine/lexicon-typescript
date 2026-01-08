@@ -100,73 +100,38 @@ function partiallyTypedFunction(param: LegacyParam): any {
 ### Exercises
 
 1. **Migrate a JS file to TS**  
-   Original JS:  
-   ```javascript
-   function sum(arr) {
-     return arr.reduce((a, b) => a + b, 0);
-   }
-   ```  
-   Solution:  
-   ```typescript
-    function sum(arr: number[]): number {
-      return arr.reduce((a, b) => a + b, 0);
-    }
-    ```
-
-2. **Migrate Express.js route handler**  
     Original JS:  
     ```javascript
-    const express = require('express');
-    const app = express();
-
-    app.get('/users/:id', function(req, res) {
-      const userId = req.params.id;
-      res.json({ id: userId, name: 'User ' + userId });
-    });
+    function sum(arr) {
+      return arr.reduce((a, b) => a + b, 0);
+    }
     ```  
-    Solution:  
-    ```typescript
-    import express, { Request, Response } from 'express';
-    const app = express();
+    [View Solution](./solutions/module-5-solutions.md#exercise-1-migrate-a-js-file-to-ts)
 
-    interface UserParams {
-      id: string;
-    }
+2. **Migrate Express.js route handler**  
+     Original JS:  
+     ```javascript
+     const express = require('express');
+     const app = express();
 
-    interface UserResponse {
-      id: string;
-      name: string;
-    }
-
-    app.get('/users/:id', (req: Request<UserParams>, res: Response<UserResponse>) => {
-      const userId = req.params.id;
-      res.json({ id: userId, name: `User ${userId}` });
-    });
-    ```
+     app.get('/users/:id', function(req, res) {
+       const userId = req.params.id;
+       res.json({ id: userId, name: 'User ' + userId });
+     });
+     ```  
+    [View Solution](./solutions/module-5-solutions.md#exercise-2-migrate-expressjs-route-handler)
 
 3. **Add types to a jQuery function**  
-    Original:  
-    ```javascript
-    function setupEventHandlers() {
-      $('#button').click(function() {
-        var value = $('#input').val();
-        console.log(value);
-      });
-    }
-    ```  
-    Solution:  
-    ```typescript
-    interface JqueryEventHandler {
-      (event: JQuery.Event): void;
-    }
-
-    function setupEventHandlers(): void {
-      $('#button').click(function(this: HTMLElement, event: JQuery.Event) {
-        const value = $('#input').val() as string;
-        console.log(value);
-      } as JqueryEventHandler);
-    }
-    ```
+     Original:  
+     ```javascript
+     function setupEventHandlers() {
+       $('#button').click(function() {
+         var value = $('#input').val();
+         console.log(value);
+       });
+     }
+     ```  
+    [View Solution](./solutions/module-5-solutions.md#exercise-3-add-types-to-a-jquery-function)
 
 ## Lesson 2: Error Handling
 
@@ -244,81 +209,32 @@ if (result.success) {
 ### Exercises
 
 1. **Add error handling to a function**  
-   Original:  
-   ```typescript
-   function divide(a: number, b: number): number {
-     return a / b;
-   }
-   ```  
-   Solution:  
-   ```typescript
+    Original:  
+    ```typescript
     function divide(a: number, b: number): number {
-      if (b === 0) throw new Error('Division by zero');
       return a / b;
     }
-    ```
+    ```  
+    [View Solution](./solutions/module-5-solutions.md#exercise-1-add-error-handling-to-a-function)
 
 2. **Implement Result type for API calls**  
-    Original:  
-    ```typescript
-    async function fetchUser(id: number) {
-      const response = await fetch(`/api/users/${id}`);
-      return response.json();
-    }
-    ```  
-    Solution:  
-    ```typescript
-    type ApiResult<T> = { success: true; data: T } | { success: false; error: string };
-
-    async function fetchUser(id: number): Promise<ApiResult<User>> {
-      try {
-        const response = await fetch(`/api/users/${id}`);
-        if (!response.ok) {
-          return { success: false, error: `HTTP ${response.status}` };
-        }
-        const data = await response.json();
-        return { success: true, data };
-      } catch (error) {
-        return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
-      }
-    }
-    ```
+     Original:  
+     ```typescript
+     async function fetchUser(id: number) {
+       const response = await fetch(`/api/users/${id}`);
+       return response.json();
+     }
+     ```  
+    [View Solution](./solutions/module-5-solutions.md#exercise-2-implement-result-type-for-api-calls)
 
 3. **Create error boundary pattern**  
-    Original:  
-    ```typescript
-    function processItems(items: any[]) {
-      return items.map(item => item.value.toUpperCase());
-    }
-    ```  
-    Solution:  
-    ```typescript
-    class ProcessingError extends Error {
-      constructor(message: string, public itemIndex: number, public originalError: Error) {
-        super(message);
-        this.name = 'ProcessingError';
-      }
-    }
-
-    function processItems(items: Array<{ value?: string }>): Array<{ result: string } | { error: ProcessingError }> {
-      return items.map((item, index) => {
-        try {
-          if (!item.value) {
-            throw new Error('Missing value property');
-          }
-          return { result: item.value.toUpperCase() };
-        } catch (error) {
-          return {
-            error: new ProcessingError(
-              `Failed to process item ${index}`,
-              index,
-              error instanceof Error ? error : new Error(String(error))
-            )
-          };
-        }
-      });
-    }
-    ```
+     Original:  
+     ```typescript
+     function processItems(items: any[]) {
+       return items.map(item => item.value.toUpperCase());
+     }
+     ```  
+    [View Solution](./solutions/module-5-solutions.md#exercise-3-create-error-boundary-pattern)
 
 ### Quiz
 1. How to handle errors in async TS? (try/catch)
@@ -414,76 +330,46 @@ function createConfig() {
 ### Exercises
 
 1. **Optimize a function with types**  
-   Original:  
-   ```typescript
-   function find(items: any[], id: any): any {
-     return items.find(item => item.id === id);
-   }
-   ```  
-   Solution:  
-   ```typescript
-   interface Item { id: number; name: string; }
-    function find(items: Item[], id: number): Item | undefined {
+    Original:  
+    ```typescript
+    function find(items: any[], id: any): any {
       return items.find(item => item.id === id);
     }
-    ```
+    ```  
+    [View Solution](./solutions/module-5-solutions.md#exercise-1-optimize-a-function-with-types)
 
 2. **Optimize discriminated union for better performance**  
-    Original:  
-    ```typescript
-    interface ApiResponse {
-      status: 'success' | 'error';
-      data?: any;
-      error?: string;
-    }
+     Original:  
+     ```typescript
+     interface ApiResponse {
+       status: 'success' | 'error';
+       data?: any;
+       error?: string;
+     }
 
-    function handleResponse(response: ApiResponse) {
-      if (response.status === 'success') {
-        console.log(response.data);
-      } else {
-        console.error(response.error);
-      }
-    }
-    ```  
-    Solution:  
-    ```typescript
-    type ApiResponse =
-      | { status: 'success'; data: unknown }
-      | { status: 'error'; error: string };
-
-    function handleResponse(response: ApiResponse) {
-      if (response.status === 'success') {
-        console.log(response.data); // TypeScript knows data exists
-      } else {
-        console.error(response.error); // TypeScript knows error exists
-      }
-    }
-    ```
+     function handleResponse(response: ApiResponse) {
+       if (response.status === 'success') {
+         console.log(response.data);
+       } else {
+         console.error(response.error);
+       }
+     }
+     ```  
+    [View Solution](./solutions/module-5-solutions.md#exercise-2-optimize-discriminated-union-for-better-performance)
 
 3. **Use const assertions for configuration objects**  
-    Original:  
-    ```typescript
-    const config = {
-      theme: 'dark',
-      language: 'en',
-      features: ['feature1', 'feature2']
-    };
+     Original:  
+     ```typescript
+     const config = {
+       theme: 'dark',
+       language: 'en',
+       features: ['feature1', 'feature2']
+     };
 
-    type Theme = string;
-    type Language = string;
-    ```  
-    Solution:  
-    ```typescript
-    const config = {
-      theme: 'dark',
-      language: 'en',
-      features: ['feature1', 'feature2']
-    } as const;
-
-    type Theme = typeof config.theme; // 'dark'
-    type Language = typeof config.language; // 'en'
-    type Feature = typeof config.features[number]; // 'feature1' | 'feature2'
-    ```
+     type Theme = string;
+     type Language = string;
+     ```  
+    [View Solution](./solutions/module-5-solutions.md#exercise-3-use-const-assertions-for-configuration-objects)
 
 ### Quiz
 1. Why avoid `any`? (Loses type safety, hinders tooling)
@@ -642,89 +528,40 @@ declare global {
 ### Exercises
 
 1. **Create a type-safe assertion function**  
-    Original:  
-    ```typescript
-    function processData(data: any) {
-      if (data.type === 'user') {
-        console.log(data.name);
-      }
-    }
-    ```  
-    Solution:  
-    ```typescript
-    interface UserData {
-      type: 'user';
-      name: string;
-      age: number;
-    }
-
-    function isUserData(data: any): data is UserData {
-      return data &&
-             data.type === 'user' &&
-             typeof data.name === 'string' &&
-             typeof data.age === 'number';
-    }
-
-    function processData(data: unknown) {
-      if (isUserData(data)) {
-        console.log(data.name); // TypeScript knows data is UserData
-      }
-    }
-    ```
+     Original:  
+     ```typescript
+     function processData(data: any) {
+       if (data.type === 'user') {
+         console.log(data.name);
+       }
+     }
+     ```  
+    [View Solution](./solutions/module-5-solutions.md#exercise-1-create-a-type-safe-assertion-function)
 
 2. **Fix optional property handling**  
-    Original:  
-    ```typescript
-    interface Options {
-      retries?: number;
-      timeout?: number;
-    }
+     Original:  
+     ```typescript
+     interface Options {
+       retries?: number;
+       timeout?: number;
+     }
 
-    function fetchWithRetry(url: string, options: Options) {
-      const retries = options.retries + 1; // Error if undefined
-      // ...
-    }
-    ```  
-    Solution:  
-    ```typescript
-    interface Options {
-      retries?: number;
-      timeout?: number;
-    }
-
-    function fetchWithRetry(url: string, options: Options = {}) {
-      const retries = (options.retries ?? 3) + 1;
-      const timeout = options.timeout ?? 5000;
-      // Safe to use
-    }
-    ```
+     function fetchWithRetry(url: string, options: Options) {
+       const retries = options.retries + 1; // Error if undefined
+       // ...
+     }
+     ```  
+    [View Solution](./solutions/module-5-solutions.md#exercise-2-fix-optional-property-handling)
 
 3. **Debug complex union types**  
-    Original:  
-    ```typescript
-    type Event = { type: 'click'; x: number; y: number } | { type: 'key'; key: string };
-    function handleEvent(event: Event) {
-      // How to access properties safely?
-    }
-    ```  
-    Solution:  
-    ```typescript
-    type Event = { type: 'click'; x: number; y: number } | { type: 'key'; key: string };
-
-    function handleEvent(event: Event) {
-      switch (event.type) {
-        case 'click':
-          console.log(`Click at ${event.x}, ${event.y}`);
-          break;
-        case 'key':
-          console.log(`Key pressed: ${event.key}`);
-          break;
-        default:
-          // TypeScript will catch missing cases
-          const _exhaustive: never = event;
-      }
-    }
-    ```
+     Original:  
+     ```typescript
+     type Event = { type: 'click'; x: number; y: number } | { type: 'key'; key: string };
+     function handleEvent(event: Event) {
+       // How to access properties safely?
+     }
+     ```  
+    [View Solution](./solutions/module-5-solutions.md#exercise-3-debug-complex-union-types)
 
 ### Quiz
 1. What is a type guard? (Function that narrows types at runtime)

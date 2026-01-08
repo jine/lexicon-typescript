@@ -36,7 +36,7 @@ const calc: Calculator = { calculate };
 ### Exercise
 Implement full calculator with input parsing.
 
-Example:
+Solution:
 ```typescript
 // Use readline for input
 import * as readline from 'readline';
@@ -90,7 +90,7 @@ function processFile(inputPath: string, outputPath: string, transform: (content:
 ### Exercise
 Build a tool to uppercase text files.
 
-Example:
+Solution:
 ```typescript
 processFile('input.txt', 'output.txt', content => content.toUpperCase());
 ```
@@ -160,7 +160,7 @@ button.addEventListener('click', () => {
 ### Exercise
 Add delete functionality.
 
-Example:
+Solution:
 ```typescript
 // Add delete button to each li
 const deleteBtn = document.createElement('button');
@@ -285,7 +285,7 @@ async function fetchUsers() {
 ### Exercise
 Implement a generic CRUD interface and extend the client.
 
-Example:
+Solution:
 ```typescript
 interface CrudApi<T> {
   getAll(): Promise<ApiResponse<T[]>>;
@@ -429,7 +429,7 @@ export class FileSystemUtils {
 ### Exercise
 Create a file backup utility using the FileSystemUtils.
 
-Example:
+Solution:
 ```typescript
 export class BackupUtils {
   static async createBackup(sourceDir: string, backupDir: string): Promise<void> {
@@ -586,7 +586,7 @@ async function initializeApp() {
 ### Exercise
 Add configuration hot-reloading capability.
 
-Example:
+Solution:
 ```typescript
 import * as fs from 'fs';
 
@@ -726,7 +726,7 @@ async function createUser(email: string) {
 ### Exercise
 Add event middleware for logging and error handling.
 
-Example:
+Solution:
 ```typescript
 export interface EventMiddleware {
   <T extends EventName>(event: T, payload: EventPayload<T>, next: () => Promise<void>): Promise<void>;
