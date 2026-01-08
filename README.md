@@ -14,3 +14,6 @@ The course complements the [Lexicon.se Frontend Developer Course](https://github
 6. [Resources for Further Learning](./module-6-resources.md) - Curated links and next steps.
 
 Each module includes lessons, code snippets, exercises, and quizzes. Complete them sequentially for a structured learning path.
+
+## Author
+Grok
