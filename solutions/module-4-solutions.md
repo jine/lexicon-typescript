@@ -1,21 +1,9 @@
-# Module 4: Hands-on Projects
-
-**Previous:** [← Module 3: Setup and Tools](./module-3-setup-tools.md) | **Next:** [Module 5: Best Practices →](./module-5-best-practices.md)
+# Module 4 Solutions: Hands-on Projects
 
 ## Project 1: Typed Functions - Calculator
 
-Build a command-line calculator with typed functions.
-
-### Steps
-
-1. Create calculator.ts
-2. Define operations with types
-3. Handle user input
-
-### Code Snippets
-
 ```typescript
-// calculator.ts
+// Calculator with proper types
 type Operation = 'add' | 'subtract' | 'multiply' | 'divide';
 
 function calculate(op: Operation, a: number, b: number): number {
@@ -28,28 +16,20 @@ function calculate(op: Operation, a: number, b: number): number {
   }
 }
 
-interface Calculator {
-  calculate: (op: Operation, a: number, b: number) => number;
-}
+// Use readline for input
+import * as readline from 'readline';
 
-const calc: Calculator = { calculate };
+const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+
+rl.question('Enter op a b: ', (input) => {
+  const [op, a, b] = input.split(' ');
+  const result = calculate(op as Operation, +a, +b);
+  console.log(result);
+  rl.close();
+});
 ```
 
-### Exercise
-Implement full calculator with input parsing.
-
-[View Solution](./solutions/module-4-solutions.md#project-1-typed-functions---calculator)
-
 ## Project 2: CLI Tool - File Processor
-
-A CLI tool to read, process, and write files.
-
-### Steps
-
-1. Use fs and path modules
-2. Add type-safe file operations
-
-### Code Snippets
 
 ```typescript
 import * as fs from 'fs';
@@ -74,27 +54,14 @@ function processFile(inputPath: string, outputPath: string, transform: (content:
   const newContent = transform(data.content);
   writeFile(outputPath, newContent);
 }
+
+// Example usage
+processFile('input.txt', 'output.txt', content => content.toUpperCase());
 ```
-
-### Exercise
-Build a tool to uppercase text files.
-
-[View Solution](./solutions/module-4-solutions.md#project-2-cli-tool---file-processor)
 
 ## Project 3: Web App with DOM Manipulation - Todo List
 
-A type-safe todo app using DOM APIs.
-
-### Steps
-
-1. Create index.html and app.ts
-2. Use TS for DOM elements
-3. Handle events
-
-### Code Snippets
-
 ```typescript
-// app.ts
 interface Todo {
   id: number;
   text: string;
@@ -143,33 +110,16 @@ button.addEventListener('click', () => {
 });
 ```
 
-### Exercise
-Add delete functionality.
-
-[View Solution](./solutions/module-4-solutions.md#project-3-web-app-with-dom-manipulation---todo-list)
-
 ## Project 4: API Client Library
 
-Build a type-safe HTTP client for REST APIs.
-
-### Steps
-
-1. Define API types and interfaces
-2. Implement HTTP methods with generics
-3. Add error handling and response types
-4. Create client class with configuration
-
-### Code Snippets
-
 ```typescript
-// types/api.ts
-export interface ApiResponse<T> {
+interface ApiResponse<T> {
   data: T;
   status: number;
   message?: string;
 }
 
-export interface ApiConfig {
+interface ApiConfig {
   baseURL: string;
   timeout?: number;
   headers?: Record<string, string>;
@@ -182,7 +132,6 @@ export class ApiError extends Error {
   }
 }
 
-// client.ts
 export class ApiClient {
   constructor(private config: ApiConfig) {}
 
@@ -232,7 +181,6 @@ export class ApiClient {
   }
 }
 
-// Usage example
 interface User {
   id: number;
   name: string;
@@ -244,7 +192,6 @@ const client = new ApiClient({
   timeout: 5000
 });
 
-// Type-safe API calls
 async function fetchUsers() {
   try {
     const response = await client.get<User[]>('/users');
@@ -255,25 +202,27 @@ async function fetchUsers() {
     }
   }
 }
+
+interface CrudApi<T> {
+  getAll(): Promise<ApiResponse<T[]>>;
+  getById(id: number): Promise<ApiResponse<T>>;
+  create(data: Omit<T, 'id'>): Promise<ApiResponse<T>>;
+  update(id: number, data: Partial<T>): Promise<ApiResponse<T>>;
+  delete(id: number): Promise<ApiResponse<void>>;
+}
+
+class UserApi implements CrudApi<User> {
+  constructor(private client: ApiClient) {}
+
+  getAll() { return this.client.get<User[]>('/users'); }
+  getById(id: number) { return this.client.get<User>(`/users/${id}`); }
+  create(data: Omit<User, 'id'>) { return this.client.post<User>('/users', data); }
+  update(id: number, data: Partial<User>) { return this.client.put<User>(`/users/${id}`, data); }
+  delete(id: number) { return this.client.delete(`/users/${id}`); }
+}
 ```
 
-### Exercise
-Implement a generic CRUD interface and extend the client.
-
-[View Solution](./solutions/module-4-solutions.md#project-4-api-client-library)
-
 ## Project 5: File System Utilities
-
-Create a robust file system utility library with type safety.
-
-### Steps
-
-1. Define file and directory types
-2. Implement async file operations
-3. Add path utilities and validation
-4. Create batch operations
-
-### Code Snippets
 
 ```typescript
 import * as fs from 'fs/promises';
@@ -380,25 +329,28 @@ export class FileSystemUtils {
     return files;
   }
 }
+
+export class BackupUtils {
+  static async createBackup(sourceDir: string, backupDir: string): Promise<void> {
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const backupPath = path.join(backupDir, `backup-${timestamp}`);
+
+    const files = await FileSystemUtils.listDirectoryRecursive(sourceDir);
+
+    for (const file of files) {
+      if (!file.isDirectory) {
+        const relativePath = path.relative(sourceDir, file.path);
+        const backupFilePath = path.join(backupPath, relativePath);
+        await FileSystemUtils.copyFile(file.path, backupFilePath);
+      }
+    }
+
+    console.log(`Backup created at ${backupPath}`);
+  }
+}
 ```
 
-### Exercise
-Create a file backup utility using the FileSystemUtils.
-
-[View Solution](./solutions/module-4-solutions.md#project-5-file-system-utilities)
-
 ## Project 6: Configuration Manager
-
-Build a type-safe configuration system with validation and environment support.
-
-### Steps
-
-1. Define configuration schema with types
-2. Implement validation and parsing
-3. Add environment variable support
-4. Create configuration loader
-
-### Code Snippets
 
 ```typescript
 export interface DatabaseConfig {
@@ -509,7 +461,6 @@ export class ConfigManager {
   }
 }
 
-// Usage
 async function initializeApp() {
   const configManager = ConfigManager.getInstance();
   const config = await configManager.load();
@@ -517,25 +468,36 @@ async function initializeApp() {
   console.log(`Starting ${config.name} v${config.version} in ${config.environment} mode`);
   console.log(`Server will listen on ${config.server.host}:${config.server.port}`);
 }
+
+export class HotReloadConfigManager extends ConfigManager {
+  private watcher: fs.FSWatcher | null = null;
+
+  async load(configPath?: string): Promise<AppConfig> {
+    const config = await super.load(configPath);
+
+    if (this.watcher) {
+      this.watcher.close();
+    }
+
+    const configFile = configPath || process.env.CONFIG_FILE || './config.json';
+    this.watcher = fs.watch(configFile, async () => {
+      console.log('Configuration file changed, reloading...');
+      this.config = null; // Force reload on next getConfig call
+    });
+
+    return config;
+  }
+
+  destroy(): void {
+    if (this.watcher) {
+      this.watcher.close();
+      this.watcher = null;
+    }
+  }
+}
 ```
 
-### Exercise
-Add configuration hot-reloading capability.
-
-[View Solution](./solutions/module-4-solutions.md#project-6-configuration-manager)
-
 ## Project 7: Event System
-
-Create a type-safe event system for decoupling application components.
-
-### Steps
-
-1. Define event types and payloads
-2. Implement event emitter with generics
-3. Add async event handling
-4. Create event middleware
-
-### Code Snippets
 
 ```typescript
 export interface EventPayloadMap {
@@ -602,10 +564,8 @@ export class EventEmitter {
   }
 }
 
-// Singleton instance
 export const eventEmitter = new EventEmitter();
 
-// Usage example
 // Register event listeners
 eventEmitter.on('user:created', async (payload) => {
   console.log(`New user created: ${payload.email}`);
@@ -627,14 +587,52 @@ async function createUser(email: string) {
 
   return userId;
 }
+
+export interface EventMiddleware {
+  <T extends EventName>(event: T, payload: EventPayload<T>, next: () => Promise<void>): Promise<void>;
+}
+
+export class MiddlewareEventEmitter extends EventEmitter {
+  private middlewares: EventMiddleware[] = [];
+
+  use(middleware: EventMiddleware): void {
+    this.middlewares.push(middleware);
+  }
+
+  async emit<T extends EventName>(event: T, payload: EventPayload<T>): Promise<void> {
+    let index = -1;
+
+    const next = async (): Promise<void> => {
+      index++;
+      if (index < this.middlewares.length) {
+        await this.middlewares[index](event, payload, next);
+      } else {
+        await super.emit(event, payload);
+      }
+    };
+
+    await next();
+  }
+}
+
+// Usage
+const emitter = new MiddlewareEventEmitter();
+
+// Logging middleware
+emitter.use(async (event, payload, next) => {
+  console.log(`[EVENT] ${event}`, payload);
+  const start = Date.now();
+  await next();
+  console.log(`[EVENT] ${event} completed in ${Date.now() - start}ms`);
+});
+
+// Error handling middleware
+emitter.use(async (event, payload, next) => {
+  try {
+    await next();
+  } catch (error) {
+    console.error(`[EVENT ERROR] ${event}:`, error);
+    // Could send to error reporting service
+  }
+});
 ```
-
-### Exercise
-Add event middleware for logging and error handling.
-
-[View Solution](./solutions/module-4-solutions.md#project-7-event-system)
-
----
-
-**Previous:** [← Module 3: Setup and Tools](./module-3-setup-tools.md) | **Next:** [Module 5: Best Practices →](./module-5-best-practices.md)
-
